@@ -1,0 +1,23 @@
+{% extends 'base.html' %} {% block header %}
+<h1>{% block title %}Tasks{% endblock %}</h1>
+{% endblock %} {% block content %}
+<section>
+  <a href="{{ url_for('task.create') }}">Create New Task</a>
+
+  <div>
+    <h1>Tasks</h1>
+    <ul>
+      {% for task in tasks %}
+      <li>
+        {{ task.title }}
+      </li>
+      {% else %}
+      <div>
+        <li><em>No tasks yet!</em></li>
+        <a href="{{ url_for('task.create') }}">Create New Task</a>
+      </div>
+    </ul>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}
