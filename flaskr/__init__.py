@@ -30,6 +30,8 @@ def create_app(test_config=None):
 
     from . import db
     from . import task
+    from . import stream
     db.init_app(app)
     app.register_blueprint(task.bp)
+    app.register_blueprint(stream.bp)
     return app

@@ -1,0 +1,24 @@
+{% extends 'base.html' %} {% block header %}
+<h1>{% block title %}Create Title{% endblock %}</h1>
+<a href="{{ url_for('stream.streams') }}">Back to Streams</a> {% endblock %} {% block content %}
+
+<section id="response-wrapper"></section>
+<section>
+  <form hx-swap="outerHTML" hx-post="/create_stream" hx-target="#response-wrapper" hx-on::after-request="this.reset()">
+    <label for="title">Title</label>
+    <input type="text" name="title" id="title" value="{{ request.form.title }}">
+    <label for="description">Description</label>
+    <label for="priority">Choose a priority level from 1-5</label>
+    <select name="priority" id="priority">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+    <textarea name="description" id="description">{{ request.form.description }}</textarea>
+    <input type="submit" value="Create">
+  </form>
+</section>
+
+{% endblock %}

@@ -1,7 +1,6 @@
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, url_for, Markup
+    Blueprint, flash, render_template, request, Markup
 )
-from werkzeug.exceptions import abort
 
 from flaskr.db import get_db
 
@@ -84,6 +83,7 @@ def create():
       title = request.form['title']
       description = request.form['description']
       priority = request.form['priority']
+      stream_id = request.form['stream_id']
       error = None
 
       if error is not None:
@@ -94,7 +94,7 @@ def create():
          db.execute(
             'INSERT INTO tasks (title, description, priority_level, stream_id)'
             ' VALUES (?, ?, ?, ?)',
-            (title, description, priority, None)
+            (title, description, priority, stream_id)
          )
          db.commit()
 
@@ -102,9 +102,16 @@ def create():
           <div>
             <p>Task Created Successfully</p>
             <p>Task name: {}</p>
+            <p>Stream id: {}</p>
           </div>
-        '''.format(title)
+        '''.format(title, stream_id)
 
       return Markup(response_content)
 
-    return render_template('task/create.html')
+    db = get_db()
+    sqliteRow = db.execute('SELECT s.stream_id, title FROM stream s ORDER BY created DESC').fetchall()
+    streams = []
+    for row in sqliteRow:
+        streams.append(dict(row))
+      
+    return render_template('task/create.html', streams=streams)

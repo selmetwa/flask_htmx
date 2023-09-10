@@ -1,38 +1,36 @@
-{% extends 'base.html' %} {% block header %}
-<h1>{% block title %}Tasks{% endblock %}</h1>
-{% endblock %} {% block content %}
-<section>
-  <a href="{{ url_for('task.create') }}">Create New Task</a>
-
-  <div>
+{% extends 'base.html' %} {% block header %} {% block stylesheet %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/task.css') }}"> {% endblock %} {% endblock %} {% block content %}
+<section class="content-wrapper">
+  <div class="content-wrapper__header">
     <h1>Tasks</h1>
-    <div class="task_details_wrapper">
-      <h1>wrapper</h1>
-    </div>
-    <ul>
-      {% for task in tasks %}
-      <li class="task_wrapper-{{task.id}}">
-        <p hx-trigger="click" hx-target=".task_details_wrapper" hx-swap="innerHTML" hx-post="/load_task_details/{{task.id}}">
-          {{ task.title }}
-        </p>
+    <a href="{{ url_for('task.create') }}">Create New Task</a>
+  </div>
+
+  <ul class="task-list">
+    {% for task in tasks %}
+    <li class="task-card task_wrapper-{{task.id}}">
+      <p hx-trigger="click" hx-target=".task_details_wrapper" hx-swap="innerHTML" hx-post="/load_task_details/{{task.id}}" class="{% if task.is_completed == 1 %}completed{% endif %}">
+        {{ task.title }}
+      </p>
+      <div class="task-buttons">
         <div class="completed_wrapper-{{task.id}}">
           {% if task.is_completed == 1 %}
           <button hx-post="/mark_as_incomplete/{{task.id}}" hx-trigger="click" hx-target=".completed_wrapper-{{task.id}}" hx-swap="outerHTML">
-            Mark as incomplete
-          </button> {% else %}
+              Mark as incomplete
+            </button> {% else %}
           <button hx-post="/mark_as_completed/{{task.id}}" hx-trigger="click" hx-target=".completed_wrapper-{{task.id}}" hx-swap="outerHTML">
-            Mark as complete
-          </button> {% endif %}
+              Mark as complete
+            </button> {% endif %}
         </div>
         <button hx-post="/delete_task/{{task.id}}" hx-trigger="click" hx-confirm="Are you sure?" hx-target=".task_wrapper-{{task.id}}" hx-swap="outerHTML">Delete</button>
-      </li>
-      {% else %}
-      <div>
-        <li><em>No tasks yet!</em></li>
-        <a href="{{ url_for('task.create') }}">Create New Task</a>
       </div>
-    </ul>
-    {% endfor %}
-  </div>
+    </li>
+    {% else %}
+    <div>
+      <li><em>No tasks yet!</em></li>
+      <a href="{{ url_for('task.create') }}">Create New Task</a>
+    </div>
+  </ul>
+  {% endfor %}
 </section>
 {% endblock %}

@@ -1,0 +1,14 @@
+nav {
+  margin-left: 150px;
+  margin-top: 50px;
+  >h1 {
+    font-size: 30px;
+  }
+  .nav-links {
+    margin-top: 8px!important;
+    >a {
+      font-size: 18px;
+      color: blue;
+    }
+  }
+}

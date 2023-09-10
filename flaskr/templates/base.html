@@ -1,12 +1,18 @@
 <!doctype html>
 <title>{% block title %}{% endblock %} - Streams</title>
 <script defer src="https://unpkg.com/htmx.org@1.9.5" integrity="sha384-xcuj3WpfgjlKF+FXhSQFQ0ZNr39ln+hwjN3npfM9VBnUskLolQAcN80McRIVOPuO" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/reset.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/base.css') }}">
 <nav>
   <h1>Streams</h1>
+  <div class="nav-links">
+    <a href="/">Tasks</a>
+    <a href="/streams">Streams</a>
+  </div>
 </nav>
 <section class="content">
   <header>
-    {% block header %}{% endblock %}
+    {% block header %} {% endblock %}
   </header>
   {% for message in get_flashed_messages() %}
   <div class="flash">{{ message }}</div>

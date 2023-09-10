@@ -1,0 +1,15 @@
+{% extends 'base.html' %} {% block header %}
+<h1>{% block title %}Streams{% endblock %}</h1>
+{% endblock %} {% block content %}
+
+<section>
+  <h1>Streams</h1>
+  <a href="{{ url_for('stream.create_stream') }}">Create New Stream</a>
+  <ul>
+    {% for stream in streams %}
+    <li>{{ stream.title }}</li>
+    <a href="{{ url_for('stream.stream_details', id=stream.stream_id) }}">View Stream</a> {% endfor %}
+  </ul>
+</section>
+
+{% endblock %}
