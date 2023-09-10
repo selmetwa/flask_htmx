@@ -1,15 +1,15 @@
-{% extends 'base.html' %} {% block header %}
-<h1>{% block title %}Streams{% endblock %}</h1>
-{% endblock %} {% block content %}
+{% extends 'base.html' %} {% block header %} {% block stylesheet %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/streams.css') }}"> {% endblock %} {% endblock %} {% block content %}
 
-<section>
-  <h1>Streams</h1>
-  <a href="{{ url_for('stream.create_stream') }}">Create New Stream</a>
+<section class="content-wrapper">
+  <div class="content-wrapper__header">
+    <h1>Streams</h1>
+    <a href="{{ url_for('stream.create_stream') }}">Create New Stream</a>
+  </div>
   <ul>
     {% for stream in streams %}
     <li>{{ stream.title }}</li>
     <a href="{{ url_for('stream.stream_details', id=stream.stream_id) }}">View Stream</a> {% endfor %}
   </ul>
 </section>
-
 {% endblock %}

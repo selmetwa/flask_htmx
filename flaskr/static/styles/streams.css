@@ -1,0 +1,20 @@
+.content-wrapper {
+  width: 500px;
+  border: 2px solid black;
+  margin-left: 150px;
+  margin-top: 15px;
+  padding: 12px;
+  .content-wrapper__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 8px 0;
+    font-family: Helevetica, sans-serif;
+    font-size: 24px;
+    >a {
+      font-size: 18px;
+      color: blue;
+    }
+  }
+}
