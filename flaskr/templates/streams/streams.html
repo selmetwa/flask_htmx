@@ -6,10 +6,14 @@
     <h1>Streams</h1>
     <a href="{{ url_for('stream.create_stream') }}">Create New Stream</a>
   </div>
-  <ul>
+  <ul class="list">
     {% for stream in streams %}
-    <li>{{ stream.title }}</li>
-    <a href="{{ url_for('stream.stream_details', id=stream.stream_id) }}">View Stream</a> {% endfor %}
+    <li class="stream-wrapper">
+      <h3>
+        {{ stream.title }}
+      </h3>
+      <a href="{{ url_for('stream.stream_details', id=stream.stream_id) }}">View Stream</a> {% endfor %}
+    </li>
   </ul>
 </section>
 {% endblock %}
