@@ -1,10 +1,9 @@
-{% extends 'base.html' %} {% block header %}
-<h1>{% block title %}Create Title{% endblock %}</h1>
-<a href="{{ url_for('task.index') }}">Back to Tasks</a> {% block stylesheet %}
+{% extends 'base.html' %} {% block header %} {% block stylesheet %}
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/form.css') }}"> {% endblock %} {% endblock %} {% block content %}
 <section id="response-wrapper"></section>
 <section>
   <form hx-swap="outerHTML" hx-post="/create" hx-target="#response-wrapper" hx-on::after-request="this.reset()" class="form">
+    <h1>Create New Task</h1>
     <label for="title">Title</label>
     <input type="text" name="title" id="title" value="{{ request.form.title }}" />
     <label for="priority">Choose a priority level from 1-5</label>

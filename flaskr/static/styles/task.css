@@ -12,6 +12,14 @@
     margin: 8px 0;
     font-family: Helevetica, sans-serif;
     font-size: 24px;
+    .content-wrapper__header-text {
+      display: flex;
+      flex-direction: column;
+      >p {
+        font-size: 16px;
+        font-weight: 400;
+      }
+    }
     >a {
       font-size: 18px;
       color: blue;

@@ -1,11 +1,15 @@
 .form {
-  border: 1px solid red;
   display: flex;
   flex-direction: column;
   max-width: 500px;
   margin-left: 150px;
-  margin-top: 50px;
+  margin-top: 10px;
   gap: 8px;
   border: 2px solid black;
   padding: 12px;
+  >h1 {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
 }
