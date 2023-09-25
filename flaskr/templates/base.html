@@ -3,6 +3,7 @@
 <script defer src="https://unpkg.com/htmx.org@1.9.5" integrity="sha384-xcuj3WpfgjlKF+FXhSQFQ0ZNr39ln+hwjN3npfM9VBnUskLolQAcN80McRIVOPuO" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="{{ url_for('static', filename='styles/reset.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='styles/base.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/drawer.css') }}">
 <nav>
   <h1>LifeStreams</h1>
   <div class="nav-links">
@@ -10,6 +11,13 @@
     <a href="/streams">Streams</a>
   </div>
 </nav>
+<aside class="drawer">
+  <header>
+    <h2>Details</h2>
+    <button class="drawer_close_button">Close</button>
+  </header>
+  <section class="drawer_content"></section>
+</aside>
 <section class="content">
   <header>
     {% block header %} {% endblock %}
@@ -18,3 +26,15 @@
   <div class="flash">{{ message }}</div>
   {% endfor %} {% block content %}{% endblock %}
 </section>
+
+
+<script>
+  const drawer = document.querySelector(".drawer");
+
+  function closeDrawer() {
+    drawer.classList.remove("open");
+    drawer.classList.add("close");
+  }
+
+  document.querySelector(".drawer_close_button").addEventListener("click", closeDrawer);
+</script>

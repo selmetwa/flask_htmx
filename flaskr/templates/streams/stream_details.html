@@ -1,18 +1,18 @@
 {% extends 'base.html' %} {% block header %} {% block stylesheet %}
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/task.css') }}"> {% endblock %} {% endblock %} {% block content %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/task.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/form.css') }}"> {% endblock %} {% endblock %} {% block content %}
 <section class="content-wrapper">
   <div class="content-wrapper__header">
     <div class="content-wrapper__header-text">
       <h1>{{stream.title}}</h1>
       <p>{{stream.description}}</p>
     </div>
-    <a href="{{ url_for('task.create') }}">Create New Task</a>
   </div>
 
   <ul class="task-list">
-    {% for task in tasks %}
+    <button hx-trigger="click" hx-target=".task-list" hx-get="/render_add_task_to_stream_view/{{stream.stream_id}}" hx-swap="innerHTML">Add Task To Stream</button> {% for task in tasks %}
     <li class="task-card task_wrapper-{{task.id}}">
-      <p hx-trigger="click" hx-target=".task_details_wrapper" hx-swap="innerHTML" hx-post="/load_task_details/{{task.id}}">
+      <p hx-trigger="click" hx-get="/load_task_details/{{ task.id }}" hx-target=".drawer_content" hx-swap="innerHTML" onclick="openDrawer()">
         {{ task.title }}
       </p>
       <div class="task-buttons">
@@ -30,5 +30,10 @@
     </li>
     {% endfor %}
   </ul>
+  <script>
+    function openDrawer() {
+      drawer.classList.add("open");
+    }
+  </script>
 </section>
 {% endblock %}

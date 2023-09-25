@@ -7,9 +7,21 @@
   gap: 8px;
   border: 2px solid black;
   padding: 12px;
-  >h1 {
+  >h2 {
     font-size: 20px;
     font-weight: 500;
     margin-bottom: 8px;
+  }
+}
+
+.success_alert {
+  border: 2px solid green;
+  padding: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  >h3 {
+    color: green;
+    font-size: 18px;
   }
 }

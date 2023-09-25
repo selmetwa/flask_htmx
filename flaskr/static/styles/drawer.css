@@ -1,0 +1,30 @@
+.drawer {
+  border-left: 2px solid black;
+  position: fixed;
+  transform: translateX(100%);
+  background-color: antiquewhite;
+  height: 100vh;
+  width: 500px;
+  right: 0;
+  top: 0;
+  >header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 12px;
+    >h2 {
+      font-size: 24px;
+    }
+  }
+}
+
+.close {
+  transform: translateX(100%);
+  transition: all 0.5s ease-in-out;
+}
+
+.open {
+  transform: translateX(0);
+  transition: all 0.5s ease-in-out;
+}
